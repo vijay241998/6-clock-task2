@@ -2,12 +2,11 @@ pipeline {
   agent none
   stages {
     stage('build and test') {
-      agent { docker { image 'python:3.6.9-alpine' } }
+      agent { docker { image 'python:3.6.9-alpine' args '-v /etc/passwd:/etc/passwd:ro' } }
       stages {
         stage('build'){
           steps {
-         
-            sh 'pip install --target ${env.WORKSPACE} -r requirements.txt'
+            sh 'pip install --user -r requirements.txt'
           }
         }
         stage('test') {
