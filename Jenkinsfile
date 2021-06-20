@@ -5,7 +5,8 @@ pipeline {
       agent { docker { image 'python:3.6.9-alpine' } }
       stages {
         stage('build'){
-          steps withEnv(["HOME=${env.WORKSPACE}"]){
+          steps {
+            withEnv(["HOME=${env.WORKSPACE}"])
             sh 'pip install --no-cache-dir -r requirements.txt --user'
           }
         }
