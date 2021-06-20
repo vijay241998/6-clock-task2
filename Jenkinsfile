@@ -29,7 +29,7 @@ pipeline {
     stage('run docker image'){
       agent any
       steps{
-        sh 'docker run -v -p 5001:5001 my-flask-image:latest'
+        sh 'docker run -d -p 5001:5001 my-flask-image:latest'
       }
     }
   }
