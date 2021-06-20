@@ -29,7 +29,9 @@ pipeline {
     stage('run docker image'){
       agent any
       steps{
-        sh 'docker run -d -p 5001:5001 my-flask-image:latest'
+        sh 'docker stop my-flask-app'
+        sh 'docker rm my-flask-app'
+        sh 'docker run -d -p 5001:5001 -name=my-flask-app my-flask-image:latest'
       }
     }
   }
