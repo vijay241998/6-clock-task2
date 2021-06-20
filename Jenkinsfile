@@ -9,16 +9,6 @@ pipeline {
             sh 'pip install --no-cache-dir -r requirements.txt'
           }
         }
-        stage('test') {
-          steps {
-            sh 'python test.py'
-          }
-          post {
-            always {
-              junit 'test-reports/*.xml'
-            }
-          }
-        }
       }
     }
     stage('build docker image'){
