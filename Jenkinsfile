@@ -6,7 +6,7 @@ pipeline {
       stages {
         stage('build'){
           steps withEnv(["HOME=${env.WORKSPACE}"]){
-            sh 'pip install --no-cache-dir -r requirements.txt'
+            sh 'pip install --no-cache-dir -r requirements.txt --user'
           }
         }
         stage('test') {
