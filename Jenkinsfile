@@ -4,19 +4,19 @@ pipeline {
     stage('build and test') {
       agent { docker { image 'python:3.6.9-alpine' } }
       stages {
-        stage('test'){
-          steps {
-            sh 'sudo echo "Hello World!"'
-          }
-        }
-      }
-    }
-    stage('build and test') {
-      agent { docker { image 'python:3.6.9-alpine' } }
-      stages {
         stage('build'){
           steps {
-            sh 'pip3 install --no-cache-dir -r requirements.txt --user'
+            sh 'pip install --no-cache-dir -r requirements.txt'
+          }
+        }
+        stage('test') {
+          steps {
+            sh 'python test.py'
+          }
+          post {
+            always {
+              junit 'test-reports/*.xml'
+            }
           }
         }
       }
