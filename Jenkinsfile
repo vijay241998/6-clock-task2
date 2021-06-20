@@ -25,5 +25,12 @@ pipeline {
         sh 'if [ $a -ge 0 ];then docker rmi $(docker images -f "dangling=true" -q);fi'
       }
     }
+    
+    stage('run docker image'){
+      agent any
+      steps{
+        sh 'docker run -v -p 5001:5001 my-flask-image:latest'
+      }
+    }
   }
 }
