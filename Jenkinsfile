@@ -31,7 +31,7 @@ pipeline {
       steps{
         sh 'docker stop my-flask-app'
         sh 'docker rm my-flask-app'
-        sh 'docker run -d -p 5001:5001 -name=my-flask-app my-flask-image:latest'
+        sh 'docker run -d -p 5001:5001 --name=my-flask-app my-flask-image:latest'
       }
     }
   }
